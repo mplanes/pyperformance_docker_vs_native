@@ -1,3 +1,5 @@
 FROM python:3.7.4-buster
 
 RUN python3 -m pip install pyperformance
+RUN mkdir /app
+WORKDIR /app
