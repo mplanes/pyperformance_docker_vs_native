@@ -3,9 +3,8 @@
 dependencies:
 python3.7 python3.7-dev docker-ce docker-ce-cli containerd
 
-Runs the pyperformance benchmark 3 times:
+Runs the pyperformance benchmark 2 times:
 - Natively on your host, using python 3.7 and virtualenv
-- Using an alpine based docker container
 - Using a debian based docker container
 
 To run:
