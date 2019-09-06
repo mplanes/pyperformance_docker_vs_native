@@ -4,8 +4,12 @@ native_results=/tmp/native_$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 12)
 docker_results=/tmp/docker_$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 12).json
 docker_results2=/tmp/docker_$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 12).json
 ### native benchmark
-python3.7 -m pip install pyperformance
-python3.7 -m pyperformance run -b nqueens -r -o $native_results
+type -P python3.7 &>/dev/null || { echo "python3.7 binary not found, installing" ; sudo apt install python3.7; }
+
+virtualenv -p python3.7 venvbenchmark
+source venvbenchmark/bin/activate
+python -m pip install pyperformance pyperf
+python -m pyperformance run -b nqueens -r -o $native_results
 
 # create a cache folder for python dependencies
 mkdir /tmp/venv_docker_debian
